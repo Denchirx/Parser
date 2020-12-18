@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphEditor", "GraphEditor\GraphEditor.csproj", "{9D95F749-75C9-4660-B50E-DA69E87100DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D95F749-75C9-4660-B50E-DA69E87100DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D95F749-75C9-4660-B50E-DA69E87100DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D95F749-75C9-4660-B50E-DA69E87100DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D95F749-75C9-4660-B50E-DA69E87100DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {750F0488-B155-40CF-A571-AD17CD08758E}
+	EndGlobalSection
+EndGlobal

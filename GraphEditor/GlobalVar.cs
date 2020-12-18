@@ -11,5 +11,6 @@ namespace GraphEditor
         public static int nodeSize = 50;
         public static int width = 0;
         public static int height = 0;
+        public static Node selectedNode = null;
     }
 }

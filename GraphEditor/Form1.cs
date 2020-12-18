@@ -34,7 +34,8 @@ namespace GraphEditor
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-
+            myGraph.MouseMove(e);
+            this.Invalidate();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)

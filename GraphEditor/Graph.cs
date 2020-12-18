@@ -52,6 +52,15 @@ namespace GraphEditor
 
         public void MouseDown(MouseEventArgs e)
         {
+            foreach (Node n in myNodes)
+            {
+                if (n.DistTo(e.Location) < nodeSize)
+                {
+                    selectedNode = n;
+                    return;
+                }
+            }
+
             if (e.Button == MouseButtons.Left)
             {
                 AddNode(e.Location);
@@ -59,11 +68,48 @@ namespace GraphEditor
         }
 
         public void MouseUp(MouseEventArgs e)
-        { 
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (selectedNode != null)
+                {
+                    selectedNode = null;
+                }
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                if (selectedNode != null)
+                {
+                    foreach (Node n in myNodes)
+                    {
+                        if (n.DistTo(e.Location) < nodeSize)
+                        {
+                            if(selectedNode != n)
+                            {
+                                selectedNode.SetNextNode(n);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void MouseMove(MouseEventArgs e)
-        { 
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (selectedNode != null)
+                {
+                    Point p = selectedNode.coord;
+                    selectedNode.coord = e.Location;
+                    if (selectedNode.CheckCollision(myNodes))
+                    {
+                        selectedNode.coord = p;
+                    }
+                }
+            }
         }
 
     }

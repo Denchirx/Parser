@@ -8,14 +8,14 @@ using static GraphEditor.GlobalVar;
 
 namespace GraphEditor
 {
-    class Node
+    public class Node
     {
-        Point coord;
+        public Point coord;
+        Node next = null;
 
         public Node(Point c)
         {
             coord = c;
-
         }
 
         public void Show(Graphics g)
@@ -37,7 +37,8 @@ namespace GraphEditor
 
             foreach(Node n in toCheck)
             {
-                if (Collide(n))
+                if (n != this
+                    && Collide(n))
                 {
                     return true;
                 }
@@ -45,12 +46,18 @@ namespace GraphEditor
 
             return false;
         }
+
+        public void SetNextNode(Node n)
+        {
+            next = n;
+        }
+
         bool Collide(Node n)
         {
             return DistTo(n.coord) < 2 * nodeSize;
         }
 
-        double DistTo(Point p)
+        public double DistTo(Point p)
         {
             return Math.Sqrt(
                 Math.Pow(coord.X - p.X, 2)

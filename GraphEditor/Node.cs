@@ -11,7 +11,7 @@ namespace GraphEditor
     public class Node
     {
         public Point coord;
-        Node next = null;
+        List<Node> next = new List<Node>();
 
         public Node(Point c)
         {
@@ -23,6 +23,18 @@ namespace GraphEditor
             g.DrawEllipse(Pens.Black, 
                 coord.X - nodeSize, coord.Y - nodeSize,
                 2 * nodeSize, 2 * nodeSize);
+
+            if (next.Count > 0)
+            {
+                Pen p = new Pen(Color.Black, 3);
+                p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+                foreach (Node n in next)
+                {
+                    Point a = GetArrowPoint(n.coord);
+                    Point b = n.GetArrowPoint(coord);
+                    g.DrawLine(p, b.X, b.Y, a.X, a.Y);
+                }
+            }
         }
 
         public bool CheckCollision(List<Node> toCheck)
@@ -49,7 +61,10 @@ namespace GraphEditor
 
         public void SetNextNode(Node n)
         {
-            next = n;
+            if (!next.Contains(n))
+            { 
+                next.Add(n);
+            }
         }
 
         bool Collide(Node n)
@@ -65,7 +80,13 @@ namespace GraphEditor
                 Math.Pow(coord.Y - p.Y, 2)
                 );
         }
-    }
 
-   
+        Point GetArrowPoint(Point p)
+        {
+            double d = DistTo(p);
+            return new Point(p.X - (int)((p.X-coord.X) * nodeSize / d),
+                p.Y - (int)((p.Y - coord.Y) * nodeSize / d));
+        }
+    }
 }
+

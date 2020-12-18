@@ -29,7 +29,8 @@ namespace GraphEditor
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-
+            myGraph.MouseUp(e);
+            this.Invalidate();
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)

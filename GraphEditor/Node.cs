@@ -37,7 +37,7 @@ namespace GraphEditor
             }
         }
 
-        public bool CheckCollision(List<Node> toCheck)
+        public bool CheckCollision()
         {
             if (coord.X + nodeSize > width
                 || coord.X - nodeSize < 0
@@ -45,15 +45,6 @@ namespace GraphEditor
                 || coord.Y - nodeSize < 0)
             {
                 return true;
-            }
-
-            foreach(Node n in toCheck)
-            {
-                if (n != this
-                    && Collide(n))
-                {
-                    return true;
-                }
             }
 
             return false;
@@ -67,7 +58,7 @@ namespace GraphEditor
             }
         }
 
-        bool Collide(Node n)
+        public bool Collide(Node n)
         {
             return DistTo(n.coord) < 2 * nodeSize;
         }
@@ -87,6 +78,10 @@ namespace GraphEditor
             return new Point(p.X - (int)((p.X-coord.X) * nodeSize / d),
                 p.Y - (int)((p.Y - coord.Y) * nodeSize / d));
         }
+
+        //Point SetClosestPoint(Point p)
+        //{ 
+        //}
     }
 }
 

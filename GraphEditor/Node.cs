@@ -75,13 +75,20 @@ namespace GraphEditor
         Point GetArrowPoint(Point p)
         {
             double d = DistTo(p);
-            return new Point(p.X - (int)((p.X-coord.X) * nodeSize / d),
-                p.Y - (int)((p.Y - coord.Y) * nodeSize / d));
+            return new Point(
+                p.X - (int)((p.X - coord.X) / d) * nodeSize,
+                p.Y - (int)((p.Y - coord.Y) / d) * nodeSize
+                );
         }
 
-        //Point SetClosestPoint(Point p)
-        //{ 
-        //}
+        public Point SetClosestPoint(Point p)
+        {
+            double d = DistTo(p);
+            return new Point(
+                coord.X + (int)Math.Ceiling((p.X - coord.X) * 2 * nodeSize / d) ,
+                coord.Y + (int)Math.Ceiling((p.Y - coord.Y) * 2 * nodeSize / d) 
+                );
+        }
     }
 }
 

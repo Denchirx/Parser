@@ -32,12 +32,12 @@ namespace GraphEditor
         public void AddNode(Point coord)
         {
             Node nNode = new Node(coord);
+
             if (!nNode.CheckCollision())
             {
                 foreach (Node n in myNodes)
                 {
-                    if (n != selectedNode
-                        && selectedNode.Collide(n))
+                    if (nNode.Collide(n))
                     {
                         return;
                     }
@@ -111,15 +111,17 @@ namespace GraphEditor
             {
                 if (selectedNode != null)
                 {
-                    Point p = selectedNode.coord;
-                    selectedNode.coord = e.Location;                    
+                    Point p = selectedNode.coord;                   
 
+                    selectedNode.coord = e.Location;
+                   
                     foreach (Node n in myNodes)
                     {
                         if (n != selectedNode
                             && selectedNode.Collide(n))
                         {
-                           
+                            selectedNode.coord = n.SetClosestPoint(e.Location);
+                            return;
                         }
                     }
 
@@ -128,7 +130,6 @@ namespace GraphEditor
                         selectedNode.coord = p;
                         return;
                     }
-
                 }
             }
 
